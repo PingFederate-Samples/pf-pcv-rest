@@ -78,21 +78,6 @@
             <artifactId>pf-protocolengine</artifactId>
             <version>10.1.0.8</version>
         </dependency>
-        <dependency>
-            <groupId>pingfederate</groupId>
-            <artifactId>pf-upgrade</artifactId>
-            <version>10.1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>pingfederate</groupId>
-            <artifactId>pf-xml</artifactId>
-            <version>10.1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.pingidentity</groupId>
-            <artifactId>pingcommons</artifactId>
-            <version>10.1.0</version>
-        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -129,4 +114,5 @@
             <url>https://yapta.jfrog.io/yapta/libs-release-local</url>
         </repository>
     </distributionManagement>
+
 </project>
