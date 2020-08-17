@@ -1,5 +1,9 @@
 pipeline {
-    agent { label 'docker' }
+    agent {
+        docker {
+            image 'maven:3-alpine'
+        }
+    }
 
     environment {
         JFROG_USER = credentials("cts_jfrog_user")
