@@ -20,20 +20,7 @@ pipeline {
             steps {
                 sh 'mvn test'
             }
-            post {
-                always {
-                    junit 'target/surefire-reports/*.xml'
-                }
-            }
         }
-//         stage('Automation Test') {
-//            steps {
-//               timeout(45) {
-//                   sh 'Xvfb :80 -screen 0 1280x1024x24 &'
-//                   sh 'DISPLAY=:80 mvn -Dsurefire.rerunFailingTestsCount=2 integration-test -P integrationTest'
-//               }
-//             }
-//         }
         stage('Package') {
             steps {
                 sh 'mvn -DskipTests package'
