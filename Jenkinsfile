@@ -26,6 +26,11 @@ pipeline {
                 sh 'mvn -DskipTests package'
             }
         }
+        stage('Deploy') {
+            steps {
+                sh 'mvn -DskipTests deploy'
+            }
+        }
 
 //         stage('Push') {
 //             steps {
