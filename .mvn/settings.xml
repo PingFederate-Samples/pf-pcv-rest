@@ -4,13 +4,13 @@
 
     <servers>
         <server>
-            <username>$JFROG_USER</username>
-            <password>$JFROG_PASS</password>
+            <username>${JFROG_USER}</username>
+            <password>${JFROG_PASS}</password>
             <id>central</id>
         </server>
         <server>
-            <username>$JFROG_USER</username>
-            <password>$JFROG_PASS</password>
+            <username>${JFROG_USER}</username>
+            <password>${JFROG_PASS}</password>
             <id>snapshots</id>
         </server>
     </servers>

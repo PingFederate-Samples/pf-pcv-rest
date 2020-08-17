@@ -13,7 +13,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'mvn -s .mvn/settings.xml  -Drepo.username=${JFROG_USER} -Drepo.password=${JFROG_PASS}  -B -DskipTests compile'
+                sh 'mvn -s .mvn/settings.xml  -DJFROG_USER=${JFROG_USER} -DJFROG_PASS=${JFROG_PASS}  -B -DskipTests compile'
             }
         }
         stage('Test') {
