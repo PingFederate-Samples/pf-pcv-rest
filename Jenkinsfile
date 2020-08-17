@@ -28,7 +28,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh 'mvn -DskipTests deploy'
+                sh 'mvn -DskipTests -s .mvn/settings.xml  -DJFROG_USER=${JFROG_USER} -DJFROG_PASS=${JFROG_PASS} deploy'
             }
         }
 
