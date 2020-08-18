@@ -1,5 +1,5 @@
 pipeline {
-    agent { label: "docker" }
+    agent { label "docker" }
 
     environment {
         JFROG_USER = credentials("cts_jfrog_user")
