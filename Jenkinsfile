@@ -11,38 +11,39 @@ pipeline {
     }
 
     stages {
+        stage('Version') {
+            when {
+                allOf {
+                    branch 'master'
+                }
+            }
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'cycle-ghprp-auth07080b632-6420-46cf-83b5-631080ba8109', usernameVariable: 'gitUsername', passwordVariable: 'gitPassword')]) {
+                    sh "export GIT_USER=$gitUsername && export GIT_PASS=$gitPassword && make push-version"
+                }
+            }
+        }
         stage('Build') {
             steps {
-                sh 'mvn -s .mvn/settings.xml  -DJFROG_USER=${JFROG_USER} -DJFROG_PASS=${JFROG_PASS}  -B -DskipTests compile'
+                withCredentials([usernamePassword(credentialsId: 'cycle-ghprp-auth07080b632-6420-46cf-83b5-631080ba8109', usernameVariable: 'gitUsername', passwordVariable: 'gitPassword')]) {
+                    sh "export GIT_USER=$gitUsername && export GIT_PASS=$gitPassword && make build"
+                }
             }
         }
         stage('Test') {
             steps {
-                sh 'mvn test'
-            }
-        }
-        stage('Package') {
-            steps {
-                sh 'mvn -DskipTests package'
+                sh 'make test'
             }
         }
         stage('Deploy') {
+            when {
+                allOf {
+                    branch 'master'
+                }
+            }
             steps {
-                sh 'mvn -DskipTests -s .mvn/settings.xml  -DJFROG_USER=${JFROG_USER} -DJFROG_PASS=${JFROG_PASS} deploy'
+                sh 'export GIT_USER=$gitUsername && export GIT_PASS=$gitPassword && make deploy'
             }
         }
-
-//         stage('Push') {
-//             steps {
-//                 withCredentials([[ $class: 'AmazonWebServicesCredentialsBinding', credentialsId : '0ce8798e-0c75-4357-b687-59c247908b86']]) {
-// 	                sh 'aws configure set region us-east-1'
-// 	            	sh 'aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID'
-// 	            	sh 'aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY'
-// 	            	sh '$(aws ecr get-login --no-include-email)'
-// 	                sh 'mvn -e clean package dockerfile:push'
-//                 }
-//             }
-//         }
-
     }
 }
