@@ -3,6 +3,7 @@ APP_IMAGE=cts-pf-pcv-rest
 
 build-dvc:
 	ls -la
+	ls -la cts_doc_von_count
 	docker build --no-cache -t $(DVC_IMAGE) -f cts_doc_von_count/Dockerfile cts_doc_von_count
 
 pull-version:
