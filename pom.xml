@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.coupa</groupId>
     <artifactId>cts-pf-pcv-rest</artifactId>
-    <version>1.0.0</version>
+    <version>${PACKAGE_VERSION}</version>
 
     <packaging>jar</packaging>
     <properties>
